@@ -14,7 +14,7 @@
                 <a href="/">Home</a>
             </li>
             <li>
-                <a href="/task">task</a>
+                <a href="/task">Tareas</a>
             </li>
             <li>
                 <a href="/signup">signup</a>
@@ -22,10 +22,13 @@
             <li>
                 <a href="/signin">signin</a>
             </li>
+            <li>
+                <a href="/task/create/">crear tarea</a>
+            </li>
             
             {% if user.is_authenticated %}
             <li>
-                <a href="/logout">logout</a>
+                <a href="/logout">Salir</a>
             </li>
         {% endif %}
         </ul>
