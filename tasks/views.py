@@ -100,14 +100,15 @@ def create_task(request):
 def task_detail(request, task_id):
      if request.method == 'GET':
     # task = Task.objects.get(pk=task_id)
-        task = get_object_or_404(Task, pk=task_id)
+        task = get_object_or_404(Task, pk=task_id,user=request.user)
     # llamamos al formulario para actualizar
         form = TaskForm(instance=task)
         return render(request, 'task_details.html', {'task': task, 'form': form})
      else:
             try:
 
-                task = get_object_or_404(Task,pk=task_id)
+
+                task = get_object_or_404(Task,pk=task_id, user=request.user)
                 form = TaskForm(request.POST,instance=task)
                 form.save()    
                 return redirect('task')

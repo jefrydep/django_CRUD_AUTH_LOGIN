@@ -10,21 +10,34 @@
    
     <nav>
         <ul>
+            {% if user.is_authenticated %}
             <li>
                 <a href="/">Home</a>
             </li>
+            {% endif %}
+            {% if user.is_authenticated %}
             <li>
                 <a href="/task">Tareas</a>
             </li>
+            {% endif %}
+            
+            {% if user.is_authenticated == False%}
             <li>
                 <a href="/signup">signup</a>
             </li>
+            {% endif %}
+            
+            {% if user.is_authenticated == False%}
             <li>
                 <a href="/signin">signin</a>
             </li>
+            {% endif %}
+
+            {% if user.is_authenticated %}
             <li>
                 <a href="/task/create/">crear tarea</a>
             </li>
+            {% endif %}
             
             {% if user.is_authenticated %}
             <li>

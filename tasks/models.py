@@ -14,5 +14,4 @@ class Task (models.Model):
         return self.title + '- by ' + self.user.username
     
 
-     
 

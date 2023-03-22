@@ -11,8 +11,7 @@
       <strong>{{task.title}}</strong>
       {% else %} {{task.id}} {{task.title}} {% endif %}
       <p>{{task.description}}</p>
-
-      <!-- {{task.datecompleted|date:'M j Y:i'}} -->
+      {{task.datecompleted|date:'M j Y:i'}}
     </a>
   </li>
   {% endfor %}
