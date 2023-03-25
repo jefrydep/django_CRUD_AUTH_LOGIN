@@ -19,11 +19,15 @@ from tasks import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.hello, name='home'),
-    path('signup/',views.signup, name='signup'),
-    path('task/',views.task,name='task'),
-    path('task/<int:task_id>/',views.task_detail,name='task_detail'),
-    path('logout/',views.signOut,name='logout'),
-    path('signin/',views.signIn,name='signin'),
-    path('task/create/',views.create_task,name='create_task')
+    path('', views.hello, name='home'),
+    path('signup/', views.signup, name='signup'),
+    path('task/', views.task, name='task'),
+    path('tasks_completed/', views.tasks_completed, name='tasks_completed'),
+    path('task/<int:task_id>/', views.task_detail, name='task_detail'),
+    path('taks/<int:task_id>/complete',views.complete_task, name='complete_task'),
+    path('tasks/<int:task_id>/delete', views.delete_task, name='delete_task'),
+    path('logout/', views.signOut, name='logout'),
+    path('signin/', views.signIn, name='signin'),
+    path('task/create/', views.create_task, name='create_task'),
+    path('tienda/', views.tienda, name='tienda'),
 ]

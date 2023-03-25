@@ -8,6 +8,8 @@ from django.contrib.auth import login, logout, authenticate
 # importamos error de integridad de usuarios duplicados
 from django.db import IntegrityError
 from .forms import TaskForm
+from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 # Create your views here
 
 # importamos el modelo de las tareas para  mostrarlo
@@ -49,14 +51,18 @@ def signup(request):
             'error': 'passwor does not match'
         })
 
-
+@login_required
 def task(request):
     allTask = Task.objects.filter(
         user=request.user, datecompleted__isnull=True)
-    print(allTask)
+    # print(allTask)
     return render(request, 'task.html', {'tareas': allTask})
+@login_required
+def tasks_completed(request):
+    allTask = Task.objects.filter(user=request.user, datecompleted__isnull=False).order_by('-datecompleted')
+    return render(request, 'task.html', {"tareas": allTask})
 
-
+@login_required
 def signOut(request):
     logout(request)
     return redirect('home')
@@ -75,7 +81,7 @@ def signIn(request):
         login(request, user)
         return redirect('task')
 
-
+@login_required
 def create_task(request):
     if request.method == 'GET':
         return render(request, 'create_task.html', {
@@ -91,29 +97,46 @@ def create_task(request):
             new_task.save()
             return redirect('task')
         except ValueError:
-             return render(request, 'create_task.html', {
-            'form': TaskForm,
-            'error': 'Por favor ingresa datos validos'
-        })
+            return render(request, 'create_task.html', {
+                'form': TaskForm,
+                'error': 'Por favor ingresa datos validos'
+            })
 
-
+@login_required
 def task_detail(request, task_id):
-     if request.method == 'GET':
-    # task = Task.objects.get(pk=task_id)
-        task = get_object_or_404(Task, pk=task_id,user=request.user)
+    if request.method == 'GET':
+        # task = Task.objects.get(pk=task_id)
+        task = get_object_or_404(Task, pk=task_id, user=request.user)
     # llamamos al formulario para actualizar
         form = TaskForm(instance=task)
         return render(request, 'task_details.html', {'task': task, 'form': form})
-     else:
-            try:
+    else:
+        try:
 
+            task = get_object_or_404(Task, pk=task_id, user=request.user)
+            form = TaskForm(request.POST, instance=task)
+            form.save()
+            return redirect('task')
+        except ValueError:
+            return render(request, 'task_details.html', {'task': task, 'form': form, 'error': 'Error actuallizando tareas'})
 
-                task = get_object_or_404(Task,pk=task_id, user=request.user)
-                form = TaskForm(request.POST,instance=task)
-                form.save()    
-                return redirect('task')
-            except ValueError:
-                 return render(request, 'task_details.html', {'task': task, 'form': form,'error':'Error actuallizando tareas'})
+@login_required
+def tienda(request):
+    return render(request, 'tienda.html')
 
-        
-         
+@login_required
+def complete_task(request, task_id):
+    task = get_object_or_404(Task, pk=task_id, user=request.user)
+    if request.method == 'POST':
+        task.datecompleted = timezone.now()
+        task.save()
+        return redirect('task')
+
+@login_required
+def delete_task(request, task_id):
+    task = get_object_or_404(Task, pk=task_id, user=request.user)
+    if request.method == 'POST':
+        task.delete()
+        return redirect('task')
+
+ 

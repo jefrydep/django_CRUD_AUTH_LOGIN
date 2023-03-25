@@ -1,15 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Authentication</h1>
-    {{error}}
-    <form action="/signup/" method="post">
 
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">
-            send
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <form action="/signup/" method="post" class="card card-body">
+                <h1>Authentication</h1>
+                {{error}}
+            
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button class="btn btn-primary" type="submit">
+                        Enviar
+            
+                    </button>
+                </form>
 
-        </button>
-    </form>
+        </div>
+
+    </div>
+
+</main>
 {% endblock %}
