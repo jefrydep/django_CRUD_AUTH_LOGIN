@@ -68,4 +68,45 @@ _ pedimos los campos que vamos a llenar
 import os
 
 
+### despliegue de la aplicaion en un hosting gratuito
 
+1. crearse una cuenta en render.com  ya sea con github o google
+- vamos a renderdeply.com y copiamos al configuracin de secrete key
+
+* la configuracion podemos encontralo en https://render.com/docs/deploy-django
+2. vamos a settings.py de la aplicacion principal y modificamos el secret Key
+```js
+SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
+```
+3. configuramos el debu
+```js
+DEBUG = 'RENDER' not in os.environ
+```
+4. configuramos la variable de entorno que nos da render con este codigo
+```js
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:    
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+```
+5. vamos a configura la base de datos con Postgres
+
+- ejecutamos estos comandos
+```
+pip install dj-database-url
+pip install psycopg2-binary
+```
+6- vamos a settings para configurar la base de datos impotamos dj-database
+
+```js
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+DATABASES = {
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgresql://postgres:postgres@localhost:5432/mysite',
+        conn_max_age=600
+    )
+}
+```
