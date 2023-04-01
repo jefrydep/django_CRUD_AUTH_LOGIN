@@ -120,9 +120,9 @@ def task_detail(request, task_id):
         except ValueError:
             return render(request, 'task_details.html', {'task': task, 'form': form, 'error': 'Error actuallizando tareas'})
 
-@login_required
-def tienda(request):
-    return render(request, 'tienda.html')
+# @login_required
+# def tienda(request):
+#     return render(request, 'tienda.html')
 
 @login_required
 def complete_task(request, task_id):

@@ -62,3 +62,10 @@ python -m pip install Pillow
 _ pedimos los campos que vamos a llenar
 - importamos es formularion en las vistas de task
 
+#### Seguridad de la aplicacion
+- vamos  a settings e importamos el paquete 
+
+import os
+
+
+

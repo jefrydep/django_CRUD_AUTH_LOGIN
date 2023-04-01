@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container mt-5">
+  <div class="card-group">
+    {% for producto in productos %}
+
+    <div class="card">
+      <img src={{producto.imagen.url}}  height="250px" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{producto.nombre}}</h5>
+        <p class="card-text">
+          {{producto.precio}}
+        </p>
+        <p class="card-text">
+          <small class="text-body-secondary">Los mejores Producots</small>
+        </p>
+        <button class="btn btn-primary">
+Comprar
+        </button>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
