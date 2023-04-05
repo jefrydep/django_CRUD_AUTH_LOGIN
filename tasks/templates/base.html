@@ -57,9 +57,15 @@
             {% endif %} 
             {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="/contactos/contactos">Contactos</a>
+              <a class="nav-link" href="/contactos">Contactos</a>
             </li>
             {% endif %} 
+            
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="/blog">blog</a>
+            </li>
+            {% endif %}
             
             {% if user.is_authenticated %}
             <li class="nav-item">

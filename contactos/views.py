@@ -18,9 +18,9 @@ def contactos(request):
             email=EmailMessage('Mensaje ,Mensaje de : {}email addres:{}message:\n\n{}'.format(nombre,email,contenido)," ",['jefrydep@gmail.com'],reply_to=[email])
             try:
                 email.send()
-                return redirect('contactos/?valido')
+                return redirect('/contactos/?valido')
             except:
-                return redirect('contactos/?novalido')
+                return redirect('/contactos/?novalido')
 
 
     return render(request, 'contactos.html', {'mi_formulario': formulario_contactos})

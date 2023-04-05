@@ -32,7 +32,9 @@ urlpatterns = [
     path('signin/', views.signIn, name='signin'),
     path('task/create/', views.create_task, name='create_task'),
     path('tienda/',include('tienda.urls')),
-    path('contactos/',include('contactos.urls'))
+    path('contactos/',include('contactos.urls')),
+    path('blog/',include('blog.urls')),
+
     # path('tienda/', views.tienda, name='tienda'),
 ]
 

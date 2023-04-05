@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tasks',
     'tienda',
-    'contactos'
+    'contactos',
+    'blog'
     
 ]
 
@@ -133,7 +134,7 @@ EMAIL_HOST='smtp.gmail.com'
 EMAIL_USE_TLS=True
 EMAIL_PORT=587
 EMAIL_HOST_USER='jefrydep@gmail.com'
-EMAIL_HOST_PASSWORD='iamthebetterdbeveloper'
+EMAIL_HOST_PASSWORD='iamthebestdeveloper'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 

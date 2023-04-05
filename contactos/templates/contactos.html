@@ -2,13 +2,12 @@
 {% block content %}
  
 <div class="container">
-    {% if 'valido' in request.GET %}
-    <p>informacion enviada correctamente</p>
+     
     <div class="row m">
         <div class="col-md-4 offset-md-4 mt-5">
 
-            {% csrf_token %}
             <form action="" method="POST" class="center">
+                {% csrf_token %}
                 <div class="mb-3">
                    
                 <table>{{mi_formulario.as_table}} </table>
@@ -17,9 +16,11 @@
                 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+            {% if 'valido' in request.GET %}
+    <p>informacion enviada correctamente</p>
+    {% endif %}
         </div>
     </div>
-    {% endif %}
     
 </div>
 {% endblock %}
